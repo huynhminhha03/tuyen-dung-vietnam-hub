@@ -97,8 +97,8 @@ const Index = () => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          job.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesLocation = !locationFilter || job.location === locationFilter;
-    const matchesType = !typeFilter || job.type === typeFilter;
+    const matchesLocation = !locationFilter || locationFilter === "all" || job.location === locationFilter;
+    const matchesType = !typeFilter || typeFilter === "all" || job.type === typeFilter;
     
     return matchesSearch && matchesLocation && matchesType;
   });
@@ -136,7 +136,7 @@ const Index = () => {
                   <SelectValue placeholder="Địa điểm" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Tất cả địa điểm</SelectItem>
+                  <SelectItem value="all">Tất cả địa điểm</SelectItem>
                   <SelectItem value="Hồ Chí Minh">Hồ Chí Minh</SelectItem>
                   <SelectItem value="Hà Nội">Hà Nội</SelectItem>
                   <SelectItem value="Đà Nẵng">Đà Nẵng</SelectItem>
@@ -147,7 +147,7 @@ const Index = () => {
                   <SelectValue placeholder="Loại hình" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Tất cả loại hình</SelectItem>
+                  <SelectItem value="all">Tất cả loại hình</SelectItem>
                   <SelectItem value="Full-time">Full-time</SelectItem>
                   <SelectItem value="Part-time">Part-time</SelectItem>
                   <SelectItem value="Remote">Remote</SelectItem>
